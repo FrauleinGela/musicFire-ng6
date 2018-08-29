@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FakeApiInterceptor } from './interceptors/helpers/fake-api.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
-import { ApiService } from './services/api.service';
+import { ApiService, MusicService } from './services';
 @NgModule({
   imports: [
     SharedModule
@@ -10,6 +10,7 @@ import { ApiService } from './services/api.service';
   declarations: [],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: FakeApiInterceptor, multi: true },
-    ApiService]
+    ApiService,
+    MusicService]
 })
 export class CoreModule { }
