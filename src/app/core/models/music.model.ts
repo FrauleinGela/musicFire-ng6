@@ -3,5 +3,5 @@ export interface Music {
     artistName: string;
     albumName: string;
     yearRelease: number;
-    spotifyLink: number;
+    spotifyLink: string;
 }
