@@ -1,1 +1,26 @@
-<router-outlet></router-outlet>
+<div id="container">
+  <div class="sidebar">
+    <!--
+          TODO: Replace the current Sidebar to a Sidebar component
+        -->
+    <div role="navigation" class="sidebar">
+      <ul class="menu">
+        <li class="menu__item">
+          <a class="menu__item_type_link" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" routerLink="music">
+            Music
+          </a>
+        </li>
+        <li class="menu__item">
+          <a class="menu__item_type_link" routerLinkActive="active-link" routerLink="music/detail">
+            Create
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <main role="main" class="px-2 py-4">
+    <div class="">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

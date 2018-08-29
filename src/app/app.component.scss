@@ -1,0 +1,34 @@
+#container {
+    display: grid;
+    grid-template-columns: 80px auto;
+    height: 100%;
+}
+
+.sidebar {
+    background-color: #2D2E2E;
+    height: 100vh;
+
+    // TODO: Fix 100vh for mobile(it is not constant)
+    .menu {
+        padding: 0;
+
+        .menu__item {
+            padding: 10px;
+
+            .menu__item_type_link {
+                color: #fff;
+
+                &.active-link {
+                    color: #fc3429;
+                }
+            }
+        }
+    }
+}
+
+body {
+    margin: 0;
+    background: #F2F2F2;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+}
