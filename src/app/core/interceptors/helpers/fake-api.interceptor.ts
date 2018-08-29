@@ -7,16 +7,15 @@ import { Music } from '../../models/music.model';
 /**
  * Fake API
  * File to be removed if server api exists
- * 
+ *
  */
 @Injectable()
 export class FakeApiInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const musicData: Music[] = JSON.parse(localStorage.getItem('music')) || [];
-        // Simulate server api 
+        // Simulate server api
         // The default fake api route is api/
         return of(null).pipe(mergeMap(() => {
-            console.log('pii')
             if (req.url.indexOf('/api/')) {
                 if (req.url.substr(-'music'.length) === 'music' && req.method === 'GET') {
                     if (req.params.has('id')) {
@@ -53,14 +52,14 @@ export class FakeApiInterceptor implements HttpInterceptor {
                 }
                 if (req.url.match(/\/music/) && req.method === 'PUT') {
                     const updateMusic = req.body;
-                    const foundPost = musicData.some((music, index) => {
+                    const foundMusic = musicData.some((music, index) => {
                         if (music.id === updateMusic.id) {
                             musicData[index] = updateMusic;
                             localStorage.setItem('music', JSON.stringify(musicData));
                             return true;
                         }
                     });
-                    if (!foundPost) {
+                    if (!foundMusic) {
                         throw ({ error: { message: 'The music can not be updated, it was not found' } });
                     }
                     return of(new HttpResponse({ status: 200, body: updateMusic }));
