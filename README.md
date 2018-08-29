@@ -1,4 +1,20 @@
 # MusicFireNg6
+Handle a fake api server,
+the database is empty so that the user can add new music to the music list.
+The project contains 2 views: <br>
+* Music list:
+* Music creation/modification.
+
+## Built With
+```
+npm install
+
+```
+## Run With
+```
+ng serve
+
+```
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.3.
 
