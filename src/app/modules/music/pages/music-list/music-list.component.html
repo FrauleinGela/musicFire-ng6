@@ -1,3 +1,39 @@
-<p>
-  music-list works!
-</p>
+<div *ngIf="!loading">
+  <!--
+    TODO: Add here a new loader component
+  -->
+  <div class="music__table" *ngIf="music.length > 0; else empty">
+    <table mat-table [dataSource]="dataSource" matSort class="col-md-12 mat-elevation-z8">
+      <ng-container matColumnDef="artistname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Artist </th>
+        <td mat-cell *matCellDef="let element"> {{element.artistName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="albumname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Album </th>
+        <td mat-cell *matCellDef="let element"> {{element.albumName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="yearrelease">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Year</th>
+        <td mat-cell *matCellDef="let element"> {{element.yearRelease}} </td>
+      </ng-container>
+      <ng-container matColumnDef="spotifylink">
+        <th mat-header-cell *matHeaderCellDef> Spotify link </th>
+        <td mat-cell *matCellDef="let element"> {{element.spotifyLink}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+       (click)="getRecord(row)"></tr>
+    </table>
+  </div>
+  <!--
+    TODO: Add loading or empty component
+  -->
+  <ng-template #empty>
+    <div class="alert alert-primary" *ngIf="music.length == 0">
+      No music was found, please add new music 
+      <button mat-button color="primary" routerLink="detail" >Create music</button>
+    </div>
+  </ng-template>
+</div>
+
