@@ -1,3 +1,49 @@
-<p>
-  music-detail works!
-</p>
+<h1 *ngIf="create">
+  Create a Music
+</h1>
+<h1 *ngIf="!create">
+  Update Music
+</h1>
+<div class="form mx-auto col-md-6" *ngIf="music.id.length > 0 || create">
+  <div class="">
+    <form class="form__music" [formGroup]="musicFormGroup" (ngSubmit)="submitMusic()" novalidate>
+      <div class="form-group">
+        <label for="musicInputArtistName">Artist</label>
+        <input type="string" id="musicInputArtistName" formControlName="artistName" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': pControls.artistName.touched && pControls.artistName.errors }">
+        <div *ngIf="pControls.artistName.touched && pControls.artistName.errors" class="invalid-feedback">
+          <small *ngIf="pControls.artistName.errors.required">The Artist name is required</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="musicInputAlbum">Album</label>
+        <input type="string" id="musicInputAlbum" formControlName="albumName" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': pControls.albumName.touched && pControls.albumName.errors }">
+        <div *ngIf="pControls.albumName.touched && pControls.albumName.errors" class="invalid-feedback">
+          <small *ngIf="pControls.albumName.errors.required">The album name is required</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="musicInputspotifyLink">Spotify Link</label>
+        <input type="string" id="musicInputLinkMedium" formControlName="spotifyLink" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': pControls.spotifyLink.touched && pControls.spotifyLink.errors }">
+        <div *ngIf="pControls.spotifyLink.touched && pControls.spotifyLink.errors" class="invalid-feedback">
+          <small class="d-block" *ngIf="pControls.spotifyLink.errors.required">The medium link is required</small>
+          <small class="d-block" *ngIf="pControls.spotifyLink.errors.invalidLink">The link is not valid</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="musicYear">Year</label>
+        <input type="number" id="musicYear" formControlName="yearRelease" class="form-control form-control-sm" [ngClass]="{ 'is-invalid': pControls.yearRelease.touched && pControls.yearRelease.errors }">
+        <div *ngIf="pControls.yearRelease.touched && pControls.yearRelease.errors" class="invalid-feedback form__music_errors">
+          <small *ngIf="pControls.yearRelease.errors.required">The medium link is required</small>
+        </div>
+      </div>
+      <div class="float-right">
+        <button mat-button [disabled]="loading" color="primary" *ngIf="create" type="submit">Create</button>
+        <button mat-button [disabled]="loading" color="primary" *ngIf="!create">Update</button>
+        <button mat-button (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div *ngIf="errorDisplay" class="alert alert-danger">
+  {{errorDisplay }}
+</div>
