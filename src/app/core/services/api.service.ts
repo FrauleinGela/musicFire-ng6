@@ -9,7 +9,7 @@ export class ApiService {
     constructor(private http: HttpClient) { }
     // TODO: Add type attribute to parameters
     get(path, params: any): Observable<any> {
-        return this.http.get(`api/${path}`, params)
+        return this.http.get(`api/${path}`, params);
     }
     post(path, body: Object = {}): Observable<any> {
         return this.http.post(`api/${path}`, body);
@@ -18,8 +18,8 @@ export class ApiService {
         return this.http.put(`api/${path}`, body);
     }
     // TODO: Add type attribute to parameters
-    delete(path, params: any): Observable<any> {
-        return this.http.delete(`api/${path}`, params)
+    delete(path): Observable<any> {
+        return this.http.delete(`api/${path}`);
     }
 
 }
